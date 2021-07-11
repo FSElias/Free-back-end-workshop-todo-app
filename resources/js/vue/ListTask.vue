@@ -68,5 +68,6 @@ export default {
     border: none;
     color: #f00;
     outline: none;
+    cursor: pointer;
 }
 </style>
