@@ -14,7 +14,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return Task::orderBy('created_at', 'desc')->get();
+        return Task::orderBy('completed')
+            ->orderByDesc('created_at')
+            ->get();
     }
 
     /**

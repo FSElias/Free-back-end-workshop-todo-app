@@ -1,6 +1,9 @@
 <template>
     <div class="addTask">
-        <input type="text" v-model="task.name"/>
+        <input type="text"
+               v-model="task.name"
+               v-on:keydown.enter="addTask"
+        />
         <font-awesome-icon
             icon="plus-square"
             @click="addTask"
@@ -28,6 +31,7 @@ export default {
                 .then(response => {
                     if (response.status == 201) {
                         this.task.name = "";
+                        this.$emit('reloadList');
                     }
                 })
                 .catch(error => {

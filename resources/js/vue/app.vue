@@ -1,10 +1,15 @@
 <template>
     <div class="todoListContainer">
         <div class="heading">
-            <h2 id="title"> Todo List</h2>
-            <add-task-form/>
+            <h2 id="title">Todo List</h2>
+            <add-task-form
+                v-on:reloadList="getList()"
+            />
         </div>
-        <list-view/>
+        <list-view
+            :tasks="tasks"
+            v-on:reloadList="getList()"
+        />
     </div>
 </template>
 <script>
@@ -24,6 +29,26 @@ export default {
     components: {
         AddTaskForm,
         ListView
+    },
+    data: function () {
+        return {
+            tasks: []
+        }
+    },
+    methods: {
+        getList() {
+            axios
+                .get('api/tasks')
+                .then(response => {
+                    this.tasks = response.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+    },
+    created() {
+        this.getList();
     }
 }
 </script>
