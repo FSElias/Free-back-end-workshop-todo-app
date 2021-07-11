@@ -3,9 +3,7 @@
 
 namespace App\Models;
 
-/*
- * @mixin \Eloquent
- */
+/* @mixin \Eloquent */
 class Model extends \Illuminate\Database\Eloquent\Model
 {
 
